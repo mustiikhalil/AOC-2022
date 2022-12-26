@@ -26,3 +26,14 @@ extension Array where Element == String {
     return char!
   }
 }
+
+extension Array where Element == [String] {
+  public func printArray() {
+    let data = map { array in
+      "\(array.map { "\($0)" }.joined(separator: " "))"
+    }
+    .joined(separator: "\n")
+    print(data)
+  }
+}
+

@@ -1,11 +1,15 @@
-import Foundation
 import core
+import Foundation
 
 struct Day3_Solution: Runner {
+
+  // MARK: Lifecycle
 
   init(reader: Reader) {
     self.reader = reader
   }
+
+  // MARK: Internal
 
   func run(url: URL) throws {
     let file = try reader.read(url: url)
@@ -30,11 +34,15 @@ struct Day3_Solution: Runner {
     print(total)
   }
 
+  // MARK: Private
+
   private let reader: Reader
 }
 
 
 struct StringMapper {
+
+  // MARK: Lifecycle
 
   init(str subString: Substring) {
     let index = subString.index(
@@ -42,9 +50,11 @@ struct StringMapper {
       offsetBy: subString.count / 2)
     str = [
       subString[subString.startIndex..<index],
-      subString[index..<subString.endIndex]
+      subString[index..<subString.endIndex],
     ]
   }
+
+  // MARK: Internal
 
   var similarCharacter: Character {
     let str1 = str[0]
@@ -61,6 +71,8 @@ struct StringMapper {
   var fillStr: String {
     String(str[0] + str[1])
   }
+
+  // MARK: Private
 
   private let str: [Substring]
 }

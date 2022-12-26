@@ -1,7 +1,8 @@
 import Foundation
 
 public enum Errors: Error {
-  case fileNotFound, fileCantBeOpen, missingURL, missingDay, couldntParseData, poppedEmptyStack
+  case fileNotFound, fileCantBeOpen, missingURL, missingDay, couldntParseData,
+       poppedEmptyStack
 }
 
 public protocol Runner {

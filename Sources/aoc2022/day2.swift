@@ -1,11 +1,15 @@
-import Foundation
 import core
+import Foundation
 
 struct Day2_Solution: Runner {
+
+  // MARK: Lifecycle
 
   init(reader: Reader) {
     self.reader = reader
   }
+
+  // MARK: Internal
 
   func run(url: URL) throws {
     let file = try reader.read(url: url)
@@ -23,11 +27,15 @@ struct Day2_Solution: Runner {
     print("\(total) \(secondTotal)")
   }
 
+  // MARK: Private
+
   private let reader: Reader
 }
 
 
 struct GameRound {
+
+  // MARK: Lifecycle
 
   init(str: Substring) throws {
     let values = str.split(separator: " ")
@@ -43,6 +51,8 @@ struct GameRound {
     self.meRound = meRound
   }
 
+  // MARK: Internal
+
   func playRound1() -> Int {
     me.game(opponent: opponent) + me.handScore
   }
@@ -51,6 +61,8 @@ struct GameRound {
     meRound.game(opponent: opponent)
   }
 
+  // MARK: Private
+
   private let opponent: Shape
   private let me: Shape
   private let meRound: Round
@@ -58,6 +70,8 @@ struct GameRound {
 
 enum Shape: String {
   case scissors, paper, rock
+
+  // MARK: Lifecycle
 
   init?(_ arg: Substring) {
     switch arg {
@@ -71,6 +85,8 @@ enum Shape: String {
       return nil
     }
   }
+
+  // MARK: Internal
 
   var handScore: Int {
     switch self {
@@ -119,6 +135,8 @@ enum Shape: String {
 
 enum Round: Substring {
   case x = "X", y = "Y", z = "Z"
+
+  // MARK: Internal
 
   func game(opponent: Shape) -> Int {
     switch self {

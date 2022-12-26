@@ -1,11 +1,14 @@
 import Foundation
 
 public struct Reader {
-  private let manager: FileManager
+
+  // MARK: Lifecycle
 
   public init(fileManager: FileManager = FileManager.default) {
     manager = fileManager
   }
+
+  // MARK: Public
 
   public func read(url: URL) throws -> String {
     let path = url.path()
@@ -17,4 +20,9 @@ public struct Reader {
     }
     return data
   }
+
+  // MARK: Private
+
+  private let manager: FileManager
+
 }

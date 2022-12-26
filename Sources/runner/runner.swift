@@ -9,6 +9,8 @@ import aoc2022
 @main
 struct Runner: ParsableCommand {
 
+  static let reader = Reader()
+
   @Option(name: .shortAndLong)
   var day: String?
 
@@ -19,5 +21,4 @@ struct Runner: ParsableCommand {
     try day.run(reader: Runner.reader)
   }
 
-  static let reader = Reader()
 }

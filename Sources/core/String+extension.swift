@@ -13,7 +13,7 @@ extension Character {
   }
 
   private var converter: Int {
-    return isUppercase ? 38 : 96
+    isUppercase ? 38 : 96
   }
 }
 

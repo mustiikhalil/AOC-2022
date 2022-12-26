@@ -1,11 +1,15 @@
-import Foundation
 import core
+import Foundation
 
 struct Day1_Solution: Runner {
+
+  // MARK: Lifecycle
 
   init(reader: Reader) {
     self.reader = reader
   }
+
+  // MARK: Internal
 
   func run(url: URL) throws {
     let file = try reader.read(url: url)
@@ -27,6 +31,8 @@ struct Day1_Solution: Runner {
     print(maxValue)
     print(topThreeValues.sum)
   }
+
+  // MARK: Private
 
   private let reader: Reader
 }

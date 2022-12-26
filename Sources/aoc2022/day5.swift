@@ -1,11 +1,15 @@
-import Foundation
 import core
+import Foundation
 
 struct Day5_Solution: Runner {
+
+  // MARK: Lifecycle
 
   init(reader: Reader) {
     self.reader = reader
   }
+
+  // MARK: Internal
 
   func run(url: URL) throws {
     let file = try reader.read(url: url)
@@ -19,6 +23,8 @@ struct Day5_Solution: Runner {
     print(structure.peak())
   }
 
+  // MARK: Private
+
   private let reader: Reader
 }
 
@@ -26,7 +32,7 @@ typealias Move = (count: Int, from: Int, to: Int)
 
 struct Moves {
 
-  var moves: [Move]
+  // MARK: Lifecycle
 
   init(_ moves: [Substring]) {
     self.moves = moves
@@ -40,24 +46,31 @@ struct Moves {
       }
   }
 
+  // MARK: Internal
+
+  var moves: [Move]
+
 }
 
 struct Structure: CustomDebugStringConvertible {
 
-  typealias SubStringStack = Stack<Substring>
-
-
-  private let str: String
-  var stacks: [SubStringStack] = []
-
-  var debugDescription: String {
-    return "\(stacks.map { "\($0.debugDescription)" }.joined(separator: "\n"))"
-  }
+  // MARK: Lifecycle
 
   init(_ str: Substring) {
     // Ugly decoding
     self.str = String(str)
       .replacingOccurrences(of: "    ", with: " x ")
+  }
+
+  // MARK: Internal
+
+  typealias SubStringStack = Stack<Substring>
+
+
+  var stacks: [SubStringStack] = []
+
+  var debugDescription: String {
+    "\(stacks.map { "\($0.debugDescription)" }.joined(separator: "\n"))"
   }
 
   mutating func parse() {
@@ -92,13 +105,17 @@ struct Structure: CustomDebugStringConvertible {
   }
 
   mutating func peak() -> String {
-    return stacks
+    stacks
       .map {
         "\($0.peak ?? "")"
-        .replacingOccurrences(of: "[", with: "")
-        .replacingOccurrences(of: "]", with: "")
+          .replacingOccurrences(of: "[", with: "")
+          .replacingOccurrences(of: "]", with: "")
       }
       .joined()
   }
+
+  // MARK: Private
+
+  private let str: String
 }
 
