@@ -69,16 +69,21 @@ struct CPU {
   }
 
   var drawingPosition = 0
+  var drawingPointer = 0
 
   var chars = Array(repeating: Array(repeating: ".", count: 40), count: 6)
-
 
   private mutating func startDrawing() {
     let v = numberOfCycles / CRTLowerLimit
     if value > 0 && v < 6 {
-      print("v: \(v) value: \(value) position: \(drawingPosition)")
+      print("position: \(drawingPosition) \(drawingPointer)")
       print(chars[v].map { "\($0)" }.joined())
-      chars[v][drawingPosition] = "X"
+      let start = drawingPointer == drawingPosition || drawingPointer + 1 == drawingPosition
+      chars[v][drawingPointer] = start ? "X" : "."
+      drawingPointer += 1
+      if drawingPointer >= 40 {
+        drawingPointer = 0
+      }
     }
   }
 }
